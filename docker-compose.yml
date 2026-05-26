@@ -29,7 +29,7 @@ services:
     image: hashicorp/vault:1.15
     container_name: laniakea_vault
     restart: unless-stopped
-    capabilities:
+    cap_add:
       - IPC_LOCK
     environment:
       VAULT_LOCAL_CONFIG: '{"storage": {"file": {"path": "/vault/file"}}, "listener": {"tcp": {"address": "0.0.0.0:8200", "tls_disable": 1}}, "ui": true}'
