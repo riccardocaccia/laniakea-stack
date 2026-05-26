@@ -1,0 +1,12 @@
+{$DOMAIN_NAME} {
+    # Keycloak
+    reverse_proxy keycloak:8080 {
+        header_up X-Forwarded-Proto https
+        header_up X-Real-IP {remote_host}
+    }
+
+    # Vault accessibile su https://tuodominio.com/vault
+    handle_path /vault* {
+        reverse_proxy vault:8200
+    }
+}
